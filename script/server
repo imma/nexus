@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+function main {
+  local shome="${_defn_home_home:-"$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"}"
+  source "$shome/script/profile"
+
+  if [[ "$#" == 0 ]]; then
+    set -- default
+  fi
+
+  case "${1:-}" in
+    collector|default)
+      exec python "$shome/bin/agent.py" foreground --use-local-forwarder
+      ;;
+    forwarder)
+      exec python "$shome/bin/ddagent.py"
+      ;;
+    dogstatsd)
+      exec python "$shome/bin/dogstatsd.py" --use-local-forwarder
+      ;;
+    *)
+      echo "ERROR: unknown server command: ${1:-/not-supplied/}" 1>&2
+      return 1
+      ;;
+  esac
+}
+
+main "$@"
