@@ -4,8 +4,8 @@ function bootstrap {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local url_nexus_Darwin="http://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-mac.tgz"
-  local url_nexus_Linux="http://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tgz"
+  local url_nexus_Darwin="https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-${NEXUS_VERSION}-mac.tgz"
+  local url_nexus_Linux="https://sonatype-download.global.ssl.fastly.net/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz"
 
   local url_nexus="url_nexus_$(uname -s)"
   local fnm_nexus="$(basename "${!url_nexus}")"
@@ -14,7 +14,7 @@ function bootstrap {
   mkdir -p "$shome/vendor"
   cd "$shome/vendor"
   case "$fnm_nexus" in
-    *.tgz)
+    *.tgz|*.tar.gz)
       tar xvfz "${BASEBOX_CACHE}/curl/$fnm_nexus"
       ;;
   esac
