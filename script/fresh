@@ -4,11 +4,11 @@ function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  if [[ ! -x "$(type -P nexus)" ]]; then
-    return 1
+  if [[ -x "$(type -P nexus)" ]]; then
+    return 0
   fi
 
-  return 0
+  return 1
 }
 
 source sub "$BASH_SOURCE" "$@"

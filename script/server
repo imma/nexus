@@ -9,14 +9,8 @@ function main {
   fi
 
   case "${1:-}" in
-    collector|default)
-      exec python "$shome/bin/agent.py" foreground --use-local-forwarder
-      ;;
-    forwarder)
-      exec python "$shome/bin/ddagent.py"
-      ;;
-    dogstatsd)
-      exec python "$shome/bin/dogstatsd.py" --use-local-forwarder
+    nexus|default)
+      exec "$shome/bin/nexus" run
       ;;
     *)
       echo "ERROR: unknown server command: ${1:-/not-supplied/}" 1>&2
