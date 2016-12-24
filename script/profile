@@ -4,7 +4,7 @@ function aptly_profile {
   local shome="${_nexus_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
   export PATH="$shome/bin:$PATH"
 
-  export NEXUS_VERSION="3.1.0-04"
+  export NEXUS_VERSION="3.2.0-01"
 }
 
 aptly_profile
