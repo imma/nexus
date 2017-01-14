@@ -15,8 +15,7 @@ function bootstrap {
   cd "$shome/vendor"
   case "$fnm_nexus" in
     *.tgz|*.tar.gz)
-      tar xvfz "${BASEBOX_CACHE}/curl/$fnm_nexus"
-      (cd "$shome/vendor" && mv -f sonatype-work sonatype-work-${RANDOM}-$$)
+      tar xvfz "${BASEBOX_CACHE}/curl/$fnm_nexus" --exclude sonatype-work
       ln -nfs "/data/nexus/sonatype-work" "$shome/vendor/"
       ;;
   esac
