@@ -4,7 +4,7 @@ function version {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local ver_nexus="$(readlink $(which nexus 2>/dev/null || true) | cut -d/ -f3 | cut -d- -f2-)"
+  local ver_nexus="$(readlink $(which nexus 2>/dev/null || true) 2>/dev/null | cut -d/ -f3 | cut -d- -f2-)"
   jq -n --arg nexus "$ver_nexus" '{nexus: $nexus}'
 }
 
