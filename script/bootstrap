@@ -16,6 +16,12 @@ function bootstrap {
   case "$fnm_nexus" in
     *.tgz|*.tar.gz)
       tar xfz "${BASEBOX_CACHE}/curl/$fnm_nexus" --exclude sonatype-work
+      if [[ ! -d "/data/nexus/sonatype-work" ]]; then
+        mkdir -p /data/nexus
+        pushd /data/nexus
+        tar xfz "${BASEBOX_CACHE}/curl/$fnm_nexus" sonatype-work
+        popd
+      fi
       ln -nfs "/data/nexus/sonatype-work" "$shome/vendor/"
       ;;
   esac
