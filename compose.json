@@ -25,7 +25,6 @@
           "ipv4_address": "${NET_PREFIX}.5"
         }
       },
-      "dns": "172.28.128.1",
       "dns_search": "node.consul",
       "image": "${BLOCK_REGISTRY}/block:nexus",
       "hostname": "nexus"
