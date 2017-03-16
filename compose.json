@@ -9,6 +9,9 @@
   },
   "services": {
     "nexus": {
+      "environment": [
+        "SERVICE_5001_NAME=docker"
+      ],
       "volumes": [
         "/data:/data",
         "/config:/config"
