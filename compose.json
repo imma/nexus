@@ -10,6 +10,7 @@
   "services": {
     "nexus": {
       "environment": [
+        "SERVICE_2222_NAME=ssh",
         "SERVICE_5001_NAME=docker",
         "SERVICE_8081_NAME=cache"
       ],
