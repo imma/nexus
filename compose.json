@@ -10,7 +10,8 @@
   "services": {
     "nexus": {
       "environment": [
-        "SERVICE_5001_NAME=docker"
+        "SERVICE_5001_NAME=docker",
+        "SERVICE_8081_NAME=cache"
       ],
       "volumes": [
         "/data:/data",
