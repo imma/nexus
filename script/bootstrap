@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function bootstrap {
+function main {
   local shome="$(cd -P -- "${BASH_SOURCE%/*}/.." && pwd -P)"
   source "$shome/script/profile"
 
@@ -11,22 +11,22 @@ function bootstrap {
   local fnm_nexus="$(basename "${!url_nexus}")"
   cache curl "$fnm_nexus" "${!url_nexus}"
   
-  mkdir -p "$shome/vendor"
+  localhost -m file -- state=directory dest="$shome/vendor"
   cd "$shome/vendor"
   case "$fnm_nexus" in
     *.tgz|*.tar.gz)
       tar xfz "${BASEBOX_CACHE}/curl/$fnm_nexus" --exclude sonatype-work
       if [[ ! -d "/data/nexus/sonatype-work" ]]; then
-        mkdir -p /data/nexus
+        localhost -m file -- state=directory dest="/data/nexus"
         pushd /data/nexus
         tar xfz "${BASEBOX_CACHE}/curl/$fnm_nexus" sonatype-work
         popd
       fi
-      ln -nfs "/data/nexus/sonatype-work" "$shome/vendor/"
+      localhost -m file -- state=link src="/data/nexus/sonatype-work" dest="$shome/vendor/sonatype-work"
       ;;
   esac
 
-  "$shome/script/update"
+  localhost -m file -- state=link src="../vendor/nexus-${NEXUS_VERSION}/bin/nexus" dest="$shome/bin/nexus"
 }
 
-bootstrap
+main "$@"
