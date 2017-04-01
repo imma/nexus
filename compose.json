@@ -33,7 +33,7 @@
           "ipv4_address": "${NET_PREFIX}.5"
         }
       },
-      "dns_search": "node.consul",
+      "dns_search": "dc1.node.consul",
       "image": "${BLOCK_REGISTRY}/block:nexus",
       "hostname": "nexus"
     }
