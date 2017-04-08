@@ -14,7 +14,6 @@
         "/config:/config"
       ],
       "environment": [
-        "SERVICE_2222_NAME=nexus",
         "SERVICE_5001_NAME=docker",
         "SERVICE_8081_NAME=cache"
       ],
