@@ -14,7 +14,7 @@
         "/config:/config"
       ],
       "environment": [
-        "SERVICE_2222_NAME=ssh",
+        "SERVICE_2222_NAME=nexus",
         "SERVICE_5001_NAME=docker",
         "SERVICE_8081_NAME=cache"
       ],
@@ -28,14 +28,8 @@
       "cap_add": [
         "NET_ADMIN"
       ],
-      "networks": {
-        "default": {
-          "ipv4_address": "${NET_PREFIX}.5"
-        }
-      },
-      "dns_search": "node.dc1.consul",
-      "image": "${BLOCK_REGISTRY}/block:nexus",
-      "hostname": "nexus"
+      "dns_search": "node.dc1.consul service.dc1.consul",
+      "image": "${BLOCK_REGISTRY}/block:nexus"
     }
   }
 }
