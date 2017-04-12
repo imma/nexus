@@ -4,7 +4,7 @@ function nexus_profile {
   local shome="${_nexus_home:-"$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"}"
   export PATH="$shome/bin:$PATH"
 
-  export NEXUS_VERSION="3.2.1-01"
+  export NEXUS_VERSION="3.3.0-01"
 }
 
 nexus_profile
